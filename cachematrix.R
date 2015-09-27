@@ -14,33 +14,33 @@ makeCacheMatrix <- function(x = matrix()) {
     m <<- matrix(NA,nrow=nrow(x),ncol=ncol(x))
   }
   get <- function() x
-  setmean <- function(solve) m <<- solve
-  getmean <- function() m
+  setinv <- function(solve) m <<- solve
+  getinv <- function() m
   list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
+       setinv = setinv,
+       getinv = getinv)
 }
 
 
 ## Write a short comment describing this function
-#function calculates the mean of the special "matrix" 
+#function calculates the inversion of the special "matrix" 
 # created with the above function.
 #it first checks to see if the inverse of a matrix has 
 # already been calculated. If so, it gets iverted matrix 
 # from the cache and skips the computation. 
-# Otherwise, it calculates the verted matrix of the 
+# Otherwise, it calculates the inverted matrix of the 
 # data and sets the iverse matrix in the 
-# cache via the setmean function.
+# cache via the setinv function.
 
 cacheSolve <- function(x, ...) {
-  m <- x$getmean()
+  m <- x$getinv()
   if(any(!is.na(m))) {
     message("getting cached data")
     return(m)
   }
   data <- x$get()
   m <- solve(data, ...)
-  x$setmean(m)
+  x$setinv(m)
   m
         ## Return a matrix that is the inverse of 'x'
 }
