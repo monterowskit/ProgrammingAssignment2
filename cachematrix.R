@@ -4,10 +4,10 @@
 ## Write a short comment describing this function
 
 makeCacheMatrix <- function(x = matrix()) {
-  m <- NULL
+  m <- matrix(NA,nrow=nrow(x),ncol=ncol(x))
   set <- function(y) {
     x <<- y
-    m <<- NULL
+    m <<- matrix(NA,nrow=nrow(x),ncol=ncol(x))
   }
   get <- function() x
   setmean <- function(solve) m <<- solve
@@ -22,7 +22,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   m <- x$getmean()
-  if(!is.null(m)) {
+  if(any(!is.na(m))) {
     message("getting cached data")
     return(m)
   }
