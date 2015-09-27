@@ -1,7 +1,11 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
+## The first function, makeVector creates a special "matrix", which is really a list containing a function to
+# set the value of the matrix
+# get the value of the matrix
+# set the iverse matrix
+# get  the iverse matrix
 
 makeCacheMatrix <- function(x = matrix()) {
   m <- matrix(NA,nrow=nrow(x),ncol=ncol(x))
@@ -19,6 +23,14 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+#function calculates the mean of the special "matrix" 
+# created with the above function.
+#it first checks to see if the inverse of a matrix has 
+# already been calculated. If so, it gets iverted matrix 
+# from the cache and skips the computation. 
+# Otherwise, it calculates the verted matrix of the 
+# data and sets the iverse matrix in the 
+# cache via the setmean function.
 
 cacheSolve <- function(x, ...) {
   m <- x$getmean()
